@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Speden Spelit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      font-family: 'Arial Black', sans-serif;
+    }
+    .game-title {
+      font-size: 2.5rem;
+      margin-top: 30px;
+    }
+    .score {
+      font-size: 1.5rem;
+      margin: 20px;
+    }
+    .game-button {
+      width: 120px;
+      height: 120px;
+      margin: 15px;
+      border-radius: 50%;
+      border: 4px solid white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      background-color: gray;
+      box-shadow: none;
+      transition: all 0.2s ease;
+    }
+    .game-button.active {
+      box-shadow: 0 0 20px 10px #fff;
+      filter: brightness(130%);
+    }
+    .btn-red    { background-color: #c0392b; }
+    .btn-green  { background-color: #27ae60; }
+    .btn-yellow { background-color: #f1c40f; color: black; }
+    .btn-blue   { background-color: #2980b9; }
+
+    #game-over {
+      display: none;
+      font-size: 2rem;
+      color: #ff4444;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 576px) {
+      .game-button {
+        width: 90px;
+        height: 90px;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="game-title">🎮 Speden Spelit</div>
+  <div class="score">Score: <span id="score">0</span></div>
+
+  <div class="d-flex justify-content-center flex-wrap">
+    <button class="game-button btn-red"    id="btn0"></button>
+    <button class="game-button btn-green"  id="btn1"></button>
+    <button class="game-button btn-yellow" id="btn2"></button>
+    <button class="game-button btn-blue"   id="btn3"></button>
+  </div>
+
+  <div id="game-over">💥 Game Over!</div>
+  <button class="btn btn-light mt-4" onclick="startGame()">Restart</button>
+
+  <script>
+    let currentButton = null;
+    let score = 0;
+    let speed = 1000;
+    let timeout = null;
+
+    const buttons = [
+      document.getElementById('btn0'),
+      document.getElementById('btn1'),
+      document.getElementById('btn2'),
+      document.getElementById('btn3')
+    ];
+
+    buttons.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        if (currentButton === index) {
+          score++;
+          document.getElementById('score').innerText = score;
+          speed = Math.max(300, speed * 0.93); // speed up
+          nextRound();
+        } else {
+          endGame();
+        }
+      });
+    });
+
+    function startGame() {
+      document.getElementById('score').innerText = '0';
+      document.getElementById('game-over').style.display = 'none';
+      score = 0;
+      speed = 1000;
+      buttons.forEach(btn => btn.disabled = false);
+      nextRound();
+    }
+
+    function nextRound() {
+      if (timeout) clearTimeout(timeout);
+      if (currentButton !== null) {
+        buttons[currentButton].classList.remove('active');
+      }
+      currentButton = Math.floor(Math.random() * 4);
+      buttons[currentButton].classList.add('active');
+
+      timeout = setTimeout(() => {
+        endGame();
+      }, speed + 200); // buffer time
+    }
+
+    function endGame() {
+      if (timeout) clearTimeout(timeout);
+      if (currentButton !== null) {
+        buttons[currentButton].classList.remove('active');
+      }
+      buttons.forEach(btn => btn.disabled = true);
+      document.getElementById('game-over').style.display = 'block';
+    }
+
+    startGame();
+  </script>
+
+</body>
+</html>

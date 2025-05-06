@@ -1,0 +1,81 @@
+body {
+    background-color: #0a0a0a;
+    color: white;
+    font-family: 'Arial Black', sans-serif;
+    overflow-x: hidden;
+  }
+  
+  .button-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .game-title {
+    font-size: 2.5rem;
+  }
+  
+  .score {
+    font-size: 1.5rem;
+  }
+  
+  .game-button {
+    width: 130px;
+    height: 130px;
+    border: none;
+    border-radius: 50%;
+    transition: all 0.25s ease;
+    box-shadow:
+      inset -4px -4px 8px rgba(255,255,255,0.1),
+      inset 4px 4px 8px rgba(0,0,0,0.4),
+      0 4px 15px rgba(0,0,0,0.4);
+    transform: scale(1);
+  }
+  
+  .game-button.active {
+    box-shadow:
+      0 0 25px 10px white,
+      0 0 10px currentColor,
+      inset 0 0 10px rgba(255,255,255,0.3);
+    transform: scale(1.07);
+  }
+  
+  .btn-red    { background: #e74c3c; }
+  .btn-green  { background: #2ecc71; }
+  .btn-yellow { background: #f1c40f; color: black; }
+  .btn-blue   { background: #3498db; }
+  
+  .game-over {
+    display: none;
+    font-size: 2rem;
+    color: #ff4444;
+    margin-top: 20px;
+  }
+  
+  .countdown {
+    font-size: 3rem;
+    margin: 10px;
+  }
+  
+  @media screen and (orientation: portrait) {
+    body::before {
+      content: "Käännä puhelin vaakasuuntaan pelataksesi 🔄";
+      display: block;
+      position: fixed;
+      z-index: 9999;
+      top: 40%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: black;
+      color: yellow;
+      padding: 20px;
+      font-size: 1.5rem;
+      border: 4px solid red;
+      border-radius: 10px;
+    }
+  
+    .container { display: none; }
+  }
+  
