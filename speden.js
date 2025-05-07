@@ -2,7 +2,6 @@ let score = 0;
 let speed = 1000;
 let currentButton = null;
 let timeout = null;
-let keys = ['A', 'S', 'D', 'F'];
 let keyBindings = ['A', 'S', 'D', 'F'];
 let buttonElements = [];
 let audios = [];
@@ -16,6 +15,7 @@ window.onload = () => {
 
     buttonElements[i].addEventListener('click', () => {
       handlePress(i);
+      if (navigator.vibrate) navigator.vibrate(50);
     });
 
     buttonElements[i].addEventListener('dblclick', () => {
