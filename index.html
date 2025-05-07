@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Speden Spelit</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="style.css" rel="stylesheet">
 </head>
 <body>
 
 <div class="container text-center">
-  <h1 class="game-title mt-3">🎮 Speden Spelit</h1>
+  <h1 class="game-title mt-2">🎮 Speden Spelit</h1>
   <div class="score">Pisteet: <span id="score">0</span></div>
   <div id="countdown" class="countdown"></div>
 
-  <div class="button-grid">
+  <div class="button-row">
     <button class="game-button btn-red"    id="btn0" data-key="A"></button>
     <button class="game-button btn-green"  id="btn1" data-key="S"></button>
     <button class="game-button btn-yellow" id="btn2" data-key="D"></button>
@@ -30,7 +30,7 @@
   <h3 class="mt-4">🏆 Tulostaulu</h3>
   <ol id="leaderboard"></ol>
 
-  <small>Ohjaa: A, S, D, F — Tuplanapsauta näppäintä vaihtaaksesi</small>
+  <small>Ohjaa: A, S, D, F — Tuplanapsauta painiketta vaihtaaksesi näppäimen</small>
 </div>
 
 <!-- Audio -->
